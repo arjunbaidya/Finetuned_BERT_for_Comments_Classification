@@ -17,7 +17,7 @@ tokenizer, bert_model = get_model()
 
 # Creating the Streamlit app interface to accept the user input (comment)
 
-st.write(f"## :blue[Toxic Comment Analyzer]")
+st.write(f"## 💬 :blue[Toxic Comment Analyzer]")
 user_input = st.text_area("Enter the comment below for analysis:")
 button = st.button("Analyze")
 
@@ -40,7 +40,9 @@ if user_input and button:
     y_pred = np.argmax(output.logits.detach().numpy(),axis=1)
     probs = torch.softmax(output.logits, dim=-1).detach().cpu().numpy()
     probability = probs[0, y_pred][0]
+    prediction = y_pred[0]
 
-    mapping = {0: "Non-Toxic", 1: "Toxic"}
-    st.write(f":blue[Prediction:] Comment is _{mapping[y_pred[0]]}_ \
-            with a probability of _{probability:.4f}_")
+    if prediction == 0:
+        st.write(f":blue[Prediction:] Comment is _Non-Toxic_ ✔️")
+    else:
+        st.write(f":blue[Prediction:] Comment is _Toxic_ ❌")
