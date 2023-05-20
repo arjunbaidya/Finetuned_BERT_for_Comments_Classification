@@ -46,3 +46,7 @@ if user_input and button:
         st.write(f":blue[Prediction:] Comment is _Non-Toxic_ ✔️")
     else:
         st.write(f":blue[Prediction:] Comment is _Toxic_ ❌")
+    
+    st.write("\n")
+    st.write("\n")
+    st.write("Note: This is a demo showcasing the outcome for a single comment. However, the underlying application and its model can efficiently handle multiple comments simultaneously as needed.")
